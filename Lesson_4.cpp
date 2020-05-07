@@ -226,7 +226,7 @@ void longnum::fill()
 		while (usernum[i] != '\0')
 		{
 			num1.push_back(usernum[i] - '0');
-			i++;
+			i++;			
 		}
 	}
 }
