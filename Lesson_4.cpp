@@ -12,12 +12,14 @@ public:
 	string usernum;
 	
 	void get_time(longnum num1, longnum num2);
+	
 	longnum()
 	{
 		usernum = "";
 		firstminustr = 0;
 	}
 	~longnum() { }
+
 private:
 	
 	string result1;
@@ -112,6 +114,9 @@ private:
 			return num2;
 		}
 	}
+	
+	
+	
 	friend longnum operator-(longnum num1, longnum num2)
 	{
 		if (num1.checkfomistake() == 1)
@@ -226,7 +231,7 @@ void longnum::fill()
 		while (usernum[i] != '\0')
 		{
 			num1.push_back(usernum[i] - '0');
-			i++;			
+			i++;
 		}
 	}
 }
@@ -347,11 +352,16 @@ vector<int> longnum::difffordiv(vector<int>num1, vector<int>num2)
 		}
 		if (j < 0)
 		{
+
+			
 			if (num1[i] < 0)
-			{
-				num1[i] += 10;
-				num1[i - 1] -= 1;
-			}
+			
+					
+				{
+					num1[i] += 10;
+					num1[i - 1] -= 1;
+				}
+			
 			result.push_back(num1[i]);
 		}
 		j--;
@@ -561,7 +571,8 @@ void longnum::mult1(vector<int> num2)
 
 void longnum::div1(vector<int> num2)
 {
-	if (num1.size() < num2.size() || num1[0] == 0)
+	
+	if (num1.size() < num2.size())
 	{
 		result1 += to_string(0);
 		return;
@@ -576,6 +587,7 @@ void longnum::div1(vector<int> num2)
 		cout << "You cannot divide by 0!!!";
 		return;
 	}
+	
 	vector<int>temp;
 	vector<int>count;
 	bool trigger;
@@ -625,6 +637,7 @@ void longnum::div1(vector<int> num2)
 				count[count.size() - 1]++;
 			}
 			trigger1 = 1;
+
 		}
 	}
 }
@@ -632,7 +645,11 @@ void longnum::div1(vector<int> num2)
 bool longnum::checkforbiggest1(vector<int> num1, vector<int> num2)
 {
 	bool trigger = 0;
-	if (num1.size() > num2.size())
+	 if (num1.size() > num2.size() && num1[0] ==0 && num1[1] == 0)
+	{
+	trigger = 1;
+	}
+	else if (num1.size() > num2.size())
 	{
 		trigger = 0;
 	}
@@ -640,6 +657,7 @@ bool longnum::checkforbiggest1(vector<int> num1, vector<int> num2)
 	{
 		trigger = 1;
 	}
+	
 	else
 	{
 		for (int i = 0; i < num1.size(); i++)
@@ -732,6 +750,7 @@ void longnum::get_time(longnum num1, longnum num2)
 		return;
 }
 
+
 int main()
 {
 
@@ -739,7 +758,6 @@ int main()
 	{
 		longnum x;
 		longnum y;
-		longnum z;
 		cin >> x;
 		cin >> y;
 		cout << "Summ result: " << x + y << endl;
